@@ -1,7 +1,7 @@
 {
-  "name": "next-i18next",
-  "version": "14.0.3",
-  "repository": "git@github.com:i18next/next-i18next.git",
+  "name": "@intuita-inc/next-i18next",
+  "version": "14.0.4",
+  "repository": "git@github.com:intuita-inc/next-i18next.git",
   "author": "i18next",
   "funding": [
     {

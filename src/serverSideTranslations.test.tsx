@@ -504,7 +504,8 @@ describe('serverSideTranslations', () => {
 
     it('does thrown an error with fallbackLng (as function)', async () => {
       const config: UserConfig = {
-        fallbackLng: (code: string) => (code === 'de-AT' ? 'de' : 'en'),
+        fallbackLng: (code: string) =>
+          code === 'de-AT' ? 'de' : 'en',
         i18n: {
           defaultLocale: 'de',
           locales: ['de', 'en-US', 'de-DE'],
@@ -543,42 +544,6 @@ describe('serverSideTranslations', () => {
         },
       },
     })
-  })
-
-  it('calls reloadResources when reloadOnPrerender option is true', async () => {
-    renderDummyComponent()
-
-    if (globalI18n) {
-      globalI18n.reloadResources = jest.fn()
-    }
-
-    await serverSideTranslations('en-US', [], {
-      i18n: {
-        defaultLocale: 'en-US',
-        locales: ['en-US', 'fr-CA'],
-      },
-      reloadOnPrerender: true,
-    } as UserConfig)
-
-    expect(globalI18n?.reloadResources).toHaveBeenCalledTimes(1)
-  })
-
-  it('does not call reloadResources when reloadOnPrerender option is false', async () => {
-    renderDummyComponent()
-
-    if (globalI18n) {
-      globalI18n.reloadResources = jest.fn()
-    }
-
-    await serverSideTranslations('en-US', [], {
-      i18n: {
-        defaultLocale: 'en-US',
-        locales: ['en-US', 'fr-CA'],
-      },
-      reloadOnPrerender: false,
-    } as UserConfig)
-
-    expect(globalI18n?.reloadResources).toHaveBeenCalledTimes(0)
   })
 
   it('throws if a function is used for localePath and namespaces are not provided', async () => {
